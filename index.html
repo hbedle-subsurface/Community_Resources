@@ -115,7 +115,10 @@ a{color:var(--teal-dk)}
 .results{padding:.5rem 0 3rem}
 .results-head{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:baseline;justify-content:space-between;margin-bottom:1.2rem}
 .results-head h2{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.02em}
-.count{font-family:"DM Mono",monospace;font-size:.82rem;color:var(--ink-soft)}
+.count{font-family:"DM Mono",monospace;font-size:.82rem;color:var(--ink-soft);margin:0}
+.results-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.clear{font:inherit;font-size:.9rem;font-weight:600;color:var(--teal-dk);background:none;border:none;padding:.3rem 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.clear:hover{color:var(--ink)}
 .group{
   font-family:"DM Mono",monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--teal-dk);margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid var(--sky-line);
@@ -171,7 +174,7 @@ a{color:var(--teal-dk)}
 /* ---------- print ---------- */
 @media print{
   body{background:#fff;font-size:10.5pt}
-  .urgent,.searchbar,.picker,.pdf,.hero-actions,.skip,.wave{display:none!important}
+  .urgent,.searchbar,.picker,.pdf,.hero-actions,.skip,.wave,.clear{display:none!important}
   .card{break-inside:avoid;box-shadow:none;border:1px solid #bbb;border-left:3px solid #666}
   .cards{grid-template-columns:1fr 1fr;gap:.4rem}
   .tel,.ext{background:none!important;color:#000!important;border:none!important;padding:0 .6rem 0 0}
@@ -236,7 +239,10 @@ a{color:var(--teal-dk)}
     <div class="wrap">
       <div class="results-head">
         <h2 id="results-title">Everything on the list</h2>
-        <p class="count" id="results-count"></p>
+        <div class="results-meta">
+          <p class="count" id="results-count"></p>
+          <button class="clear" id="clearBtn" type="button">&#8593; Choose something else</button>
+        </div>
       </div>
       <div id="results-body"></div>
     </div>
@@ -291,7 +297,8 @@ a{color:var(--teal-dk)}
       title = document.getElementById("results-title"),
       count = document.getElementById("results-count"),
       qbox = document.getElementById("q"),
-      bar  = document.getElementById("searchbar");
+      bar  = document.getElementById("searchbar"),
+      results = document.getElementById("results");
 
   var active = null;
 
@@ -359,7 +366,9 @@ a{color:var(--teal-dk)}
   }
 
   /* ---- render ---- */
-  function render(list, heading, showTags){
+  var GROUPED = { food:1, money:1 };
+
+  function render(list, heading, showTags, grouped){
     title.textContent = heading;
     count.textContent = list.length === 1 ? "1 listing" : list.length + " listings";
     body.innerHTML = "";
@@ -372,7 +381,7 @@ a{color:var(--teal-dk)}
 
     var groups = [];
     list.forEach(function(r){
-      var g = (!showTags && r.g) ? r.g : "";
+      var g = (grouped && r.g) ? r.g : "";
       if (groups.indexOf(g) === -1) groups.push(g);
     });
 
@@ -385,28 +394,47 @@ a{color:var(--teal-dk)}
       }
       var holder = document.createElement("div");
       holder.className = "cards";
-      list.filter(function(r){ return ((!showTags && r.g) ? r.g : "") === g; })
+      list.filter(function(r){ return ((grouped && r.g) ? r.g : "") === g; })
           .forEach(function(r){ holder.appendChild(card(r, showTags)); });
       body.appendChild(holder);
     });
   }
 
-  function select(cat, scroll){
-    active = cat;
-    qbox.value = "";
+  function clearButtons(cat){
     Array.prototype.forEach.call(grid.children, function(b){
       b.setAttribute("aria-pressed", String(b.dataset.cat === cat));
     });
+  }
 
-    if (!cat){
-      render(RESOURCES, "Everything on the list", true);
-      if (history.replaceState) history.replaceState(null,"",location.pathname);
-      return;
-    }
+  /* nothing chosen yet: keep the results panel out of the way entirely */
+  function landing(){
+    active = null;
+    clearButtons(null);
+    results.hidden = true;
+    body.innerHTML = "";
+    if (history.replaceState) history.replaceState(null,"",location.pathname);
+  }
+
+  function showEverything(scroll){
+    active = null;
+    qbox.value = "";
+    clearButtons(null);
+    results.hidden = false;
+    render(RESOURCES, "Everything on the list", true);
+    if (history.replaceState) history.replaceState(null,"",location.pathname);
+    if (scroll) results.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function select(cat, scroll){
+    qbox.value = "";
+    if (!cat){ landing(); return; }
+    active = cat;
+    clearButtons(cat);
+    results.hidden = false;
     var meta = CATEGORIES.filter(function(c){ return c.id === cat; })[0];
-    render(RESOURCES.filter(function(r){ return r.cats.indexOf(cat) > -1; }), meta.label, false);
+    render(RESOURCES.filter(function(r){ return r.cats.indexOf(cat) > -1; }), meta.label, false, GROUPED[cat]);
     if (history.replaceState) history.replaceState(null,"","#"+cat);
-    if (scroll) document.getElementById("results").scrollIntoView({behavior:"smooth", block:"start"});
+    if (scroll) results.scrollIntoView({behavior:"smooth", block:"start"});
   }
 
   /* ---- search ---- */
@@ -416,8 +444,9 @@ a{color:var(--teal-dk)}
     timer = setTimeout(function(){
       var t = qbox.value.trim().toLowerCase();
       if (!t){ select(active, false); return; }
-      Array.prototype.forEach.call(grid.children, function(b){ b.setAttribute("aria-pressed","false"); });
+      clearButtons(null);
       active = null;
+      results.hidden = false;
       var hits = RESOURCES.filter(function(r){
         return [r.n, r.a, r.d, r.w, r.e, r.g].join(" ").toLowerCase().indexOf(t) > -1;
       });
@@ -425,8 +454,15 @@ a{color:var(--teal-dk)}
     }, 140);
   });
 
-  document.getElementById("showAll").addEventListener("click", function(){ select(null,true); });
-  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+  document.getElementById("showAll").addEventListener("click", function(){ showEverything(true); });
+  document.getElementById("clearBtn").addEventListener("click", function(){
+    landing();
+    document.getElementById("needs").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  document.getElementById("printBtn").addEventListener("click", function(){
+    if (results.hidden) showEverything(false);
+    window.print();
+  });
 
   /* ---- sticky shadow ---- */
   var sentinel = document.querySelector(".hero");
