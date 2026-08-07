@@ -49,7 +49,7 @@ const RESOURCES = [
   { n: "McFarlin Memorial UMC Pantry", a: "401 S. University", d: "Tues and Thurs 10–4, plus two Saturdays a month 10–1 (call for dates). Two-week limit. Serving residents of Norman, Noble and Little Axe.", p: "405-766-7962", cats: ["food"], g: "Norman" },
   { n: "McFarlin Tuesday Together Meal", a: "419 S. University", d: "Free community dinner, 6:00–7:00 in Fenn Hall, 2nd Tuesday of the month. Call to confirm.", p: "405-321-3484", cats: ["food"], g: "Norman" },
   { n: "Meals on Wheels of Norman", a: "528 E. Main", d: "Office hours M–Th 7:30–3:30, F 7:30–2. Must be over 62; under 62 requires a disability or doctor referral.", p: "405-321-7272", w: "mealsonwheelsnorman.com", cats: ["food", "seniors"], g: "Norman" },
-  { n: "Outreach Thrift", a: "621 12th Ave NE", d: "Refrigerated and canned goods pantry available during store hours: M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["food", "clothing"], g: "Norman" },
+  { n: "Outreach Thrift", a: "621 12th Ave NE", d: "Refrigerated and canned goods pantry available during store hours: M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["food"], g: "Norman" },
   { n: "Roserock Villa", a: "2227 W. Lindsey", d: "Lunch for seniors with 24-hour call-in reservation. Suggested donation $3 for ages 60+.", p: "405-321-3200", w: "agingservicesok.com", cats: ["food", "seniors"], g: "Norman" },
   { n: "Salvation Army — community meals", a: "318 E. Hayes", d: "Hot meals seven days a week. Dinner served 5:00–5:45.", p: "405-364-9910", cats: ["food"], g: "Norman" },
   { n: "Salvation Army Food Pantry", a: "1124 N. Porter", d: "Wednesdays only. Call any time to make an appointment. Client-choice pantry. 30-day limit.", p: "405-364-9910", cats: ["food"], g: "Norman" },
