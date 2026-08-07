@@ -65,6 +65,13 @@ a{color:var(--teal-dk)}
 @media (max-width:600px){.hero{padding:1.5rem 0 .6rem}}
 .hero h1{font-size:clamp(2rem,6.2vw,3.4rem);letter-spacing:-.02em;max-width:16ch}
 .hero p{max-width:56ch;color:var(--ink-soft);margin:.9rem 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.2rem;margin-top:1.3rem}
+.pdf{
+  display:inline-flex;align-items:center;gap:.6rem;background:var(--teal-dk);color:#fff;
+  text-decoration:none;font-weight:600;padding:.8rem 1.25rem;border-radius:999px;
+}
+.pdf:hover{background:var(--ink)}
+.quiet{color:var(--teal-dk);font-weight:600;font-size:.95rem;text-underline-offset:3px}
 
 /* ---------- search ---------- */
 .searchbar{position:sticky;top:0;z-index:20;background:var(--paper);padding:.85rem 0;border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
@@ -164,7 +171,7 @@ a{color:var(--teal-dk)}
 /* ---------- print ---------- */
 @media print{
   body{background:#fff;font-size:10.5pt}
-  .urgent,.searchbar,.picker,.footer .pdf,.skip,.wave{display:none!important}
+  .urgent,.searchbar,.picker,.pdf,.hero-actions,.skip,.wave{display:none!important}
   .card{break-inside:avoid;box-shadow:none;border:1px solid #bbb;border-left:3px solid #666}
   .cards{grid-template-columns:1fr 1fr;gap:.4rem}
   .tel,.ext{background:none!important;color:#000!important;border:none!important;padding:0 .6rem 0 0}
@@ -177,7 +184,7 @@ a{color:var(--teal-dk)}
 
 <header class="masthead">
   <div class="wrap">
-    <img src="logo.jpeg" alt="First Congregational Church of Norman, UCC — an open and affirming congregation">
+    <a href="https://www.firstcongregationalchurchofnorman.org/"><img src="logo.jpeg" alt="First Congregational Church of Norman, UCC — an open and affirming congregation"></a>
     <p class="kicker">Community resource directory</p>
   </div>
 </header>
@@ -197,6 +204,13 @@ a{color:var(--teal-dk)}
     <div class="wrap">
       <h1>Help is closer than you think.</h1>
       <p>Free and low-cost help across Norman, Noble, Little Axe, Lexington and Moore. Pick what you need &mdash; you&rsquo;ll get addresses, hours, and a number you can tap to call.</p>
+      <div class="hero-actions">
+        <a class="pdf" href="resource-list.pdf" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download the full list (PDF)
+        </a>
+        <a class="quiet" href="https://www.firstcongregationalchurchofnorman.org/" target="_blank" rel="noopener">Visit our church &#8599;</a>
+      </div>
     </div>
   </section>
 
@@ -234,17 +248,20 @@ a{color:var(--teal-dk)}
 <footer class="footer">
   <div class="wrap">
     <h2>Want the whole list on paper?</h2>
-    <p>Every listing here comes from the printed resource list compiled by McFarlin Memorial United Methodist Church, dated April 7, 2026. You can download it, print it, and hand it to someone.</p>
+    <p>You can download the printed six-page version, run off copies, and hand one to someone who needs it.</p>
     <a class="pdf" href="resource-list.pdf" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
       Download the full 6-page list (PDF)
     </a>
 
     <h2>Something out of date?</h2>
-    <p>Hours and rules change often. Please call ahead when you can. To report a change, correction or an agency that&rsquo;s missing, email Mary Sallee at <a href="mailto:mksallee@icloud.com">mksallee@icloud.com</a>. The most current version of the master list is always posted at <a href="https://mcfarlinumc.org/missions/if-you-need-help/" target="_blank" rel="noopener">mcfarlinumc.org</a>.</p>
+    <p>Hours and rules change often, so please call ahead when you can. To report a change, a correction, or an agency that&rsquo;s missing, email us at <a href="mailto:uccnorman@gmail.com">uccnorman@gmail.com</a>.</p>
+
+    <h2>Come see us</h2>
+    <p>First Congregational Church of Norman is an Open and Affirming congregation &mdash; everyone is welcome here, exactly as you are. Learn more at <a href="https://www.firstcongregationalchurchofnorman.org/" target="_blank" rel="noopener">firstcongregationalchurchofnorman.org</a>.</p>
 
     <p class="fine">
-      Shared by First Congregational Church of Norman, UCC, an Open and Affirming congregation. Resource list compiled by McFarlin Memorial UMC, updated 4/7/2026. Unless another area code is shown, all numbers are 405.
+      Resource list compiled by McFarlin Memorial United Methodist Church, updated 4/7/2026, and shared here with thanks. The master version is posted at <a href="https://mcfarlinumc.org/missions/if-you-need-help/" target="_blank" rel="noopener">mcfarlinumc.org</a>. Unless another area code is shown, all numbers are 405.
       For pantries outside Norman, call 211 or visit <a href="https://www.211oklahomahelpline.org/" target="_blank" rel="noopener">211oklahomahelpline.org</a>. For 24/7 outdoor pantries, see <a href="https://www.facebook.com/groups/pantrypagenorman/" target="_blank" rel="noopener">The Pantry Page</a> on Facebook, or <a href="https://www.findhelp.org" target="_blank" rel="noopener">findhelp.org</a>.
     </p>
   </div>
