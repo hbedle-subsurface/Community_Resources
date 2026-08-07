@@ -119,6 +119,8 @@ a{color:var(--teal-dk)}
 .results-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .clear{font:inherit;font-size:.9rem;font-weight:600;color:var(--teal-dk);background:none;border:none;padding:.3rem 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .clear:hover{color:var(--ink)}
+.offer{background:var(--sky);border-radius:10px;padding:.7rem 1rem;margin:0 0 1rem;font-size:.94rem;color:var(--ink)}
+.offer .clear{font-size:.94rem}
 .group{
   font-family:"DM Mono",monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--teal-dk);margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid var(--sky-line);
@@ -368,6 +370,130 @@ a{color:var(--teal-dk)}
   /* ---- render ---- */
   var GROUPED = { food:1, money:1 };
 
+  /* ---- search index ----------------------------------------------------
+     Each listing gets three haystacks so a hit in the name outranks a hit
+     in the category vocabulary. Text is flattened: punctuation, curly
+     quotes and dashes all become spaces, so "cut-off" finds "cut off". */
+  function flat(x){
+    return " " + String(x || "").toLowerCase()
+      .replace(/[\u2018\u2019\u201C\u201D]/g, "'")
+      .replace(/[^a-z0-9'&]+/g, " ")
+      .replace(/\s+/g, " ").trim() + " ";
+  }
+
+  CATEGORIES.forEach(function(c){
+    c._vocab = flat(c.label + " " + c.blurb + " " + (c.kw || ""));
+  });
+
+  RESOURCES.forEach(function(r){
+    var vocab = r.cats.map(function(id){
+      var c = CATEGORIES.filter(function(x){ return x.id === id; })[0];
+      return c ? c.label + " " + c.blurb + " " + (c.kw || "") : "";
+    }).join(" ");
+    r._name = flat(r.n);
+    r._body = flat([r.a, r.d, r.w, r.e, r.g].join(" "));
+    r._vocab = flat(vocab);
+  });
+
+  /* singular/plural and common endings, so "diapers" finds "diaper" */
+  function variants(t){
+    var v = [t];
+    if (t.length > 3){
+      if (/ies$/.test(t))      v.push(t.slice(0,-3) + "y");
+      else if (/es$/.test(t))  v.push(t.slice(0,-2), t.slice(0,-1));
+      else if (/s$/.test(t))   v.push(t.slice(0,-1));
+      else                     v.push(t + "s", t + "es");
+      if (/ing$/.test(t))      v.push(t.slice(0,-3));
+    }
+    return v;
+  }
+
+  var STOP = {" the ":1," a ":1," an ":1," for ":1," of ":1," to ":1," in ":1,
+              " and ":1," my ":1," i ":1," me ":1," need ":1," help ":1," with ":1,
+              " some ":1," any ":1," is ":1," are ":1," near ":1," get ":1," find ":1};
+
+  /* every word must match something, but it can match any of the three
+     haystacks; score decides the order results come back in */
+  var lastWords = [];
+
+  function run(words){
+    var hits = [];
+    CATEGORIES.forEach(function(c){
+    c._vocab = flat(c.label + " " + c.blurb + " " + (c.kw || ""));
+  });
+
+  RESOURCES.forEach(function(r){
+      var score = 0, all = true, direct = false;
+      words.forEach(function(w){
+        var vs = variants(w), best = 0;
+        vs.forEach(function(v){
+          if (r._name.indexOf(" " + v) > -1)  best = Math.max(best, 10);
+          if (r._body.indexOf(" " + v) > -1)  best = Math.max(best, 4);
+          if (r._vocab.indexOf(" " + v) > -1) best = Math.max(best, 1);
+        });
+        if (best >= 4) direct = true;
+        if (!best) all = false;
+        score += best;
+      });
+      if (all) hits.push({ r: r, score: score, direct: direct });
+    });
+
+    /* If anything matched a listing's own words, show only those. A word
+       that only matched the category vocabulary ("coat", "hungry") is a
+       browse-the-whole-category query, and that's the right answer for it. */
+    var direct = hits.filter(function(h){ return h.direct; });
+    if (direct.length) hits = direct;
+
+    return hits.sort(function(a,b){
+      return b.score - a.score || a.r.n.localeCompare(b.r.n);
+    }).map(function(h){ return h.r; });
+  }
+
+  /* If someone types something that sounds like a crisis, the lifeline goes
+     first no matter how the rest of the query scores. */
+  var CRISIS = /(kill|hurt|harm|cut) (myself|my self)|end (my life|it all)|want to die|don't want to (live|be here)|no reason to live|can't go on|suicid|self harm|overdose|hopeless/;
+
+  function pin(list, raw){
+    if (!CRISIS.test(flat(raw))) return list;
+    var line = RESOURCES.filter(function(r){ return r.pri; });
+    var rest = list.filter(function(r){ return !r.pri; });
+    return line.concat(rest);
+  }
+
+  function suggestCategory(words){
+    var hit = CATEGORIES.filter(function(c){
+      return words.every(function(w){
+        return variants(w).some(function(v){ return c._vocab.indexOf(" " + v) > -1; });
+      });
+    });
+    return hit.length === 1 ? hit[0] : null;
+  }
+
+  function search(raw){
+    var words = flat(raw).trim().split(" ").filter(function(w){
+      return w && !STOP[" " + w + " "];
+    });
+    if (!words.length) return [];
+
+    lastWords = words;
+    var hits = run(words);
+    if (hits.length) return pin(hits, raw);
+
+    /* Nothing matched every word, so try again without each word in turn
+       ("bus pass" -> "bus") and keep the most specific result that works,
+       rather than showing the person nothing at all. */
+    if (words.length > 1){
+      var best = null;
+      words.forEach(function(_, i){
+        var subset = words.filter(function(__, j){ return j !== i; });
+        var got = run(subset);
+        if (got.length && (!best || got.length < best.length)) best = got;
+      });
+      if (best) return pin(best, raw);
+    }
+    return pin([], raw);
+  }
+
   function render(list, heading, showTags, grouped){
     title.textContent = heading;
     count.textContent = list.length === 1 ? "1 listing" : list.length + " listings";
@@ -375,7 +501,7 @@ a{color:var(--teal-dk)}
 
     if (!list.length){
       body.innerHTML = '<div class="empty"><h3>No matches for that word.</h3>'+
-        "<p>Try a shorter word, choose a category above, or call 211 and a person will help you find it.</p></div>";
+        "<p>Try one word instead of several &mdash; &ldquo;rent&rdquo;, &ldquo;coat&rdquo;, &ldquo;ride&rdquo;. Or pick a category above. If you&rsquo;d rather talk to a person, dial <a href=\"tel:211\">211</a> and they will help you find it.</p></div>";
       return;
     }
 
@@ -427,6 +553,7 @@ a{color:var(--teal-dk)}
 
   function select(cat, scroll){
     qbox.value = "";
+    seen = false;
     if (!cat){ landing(); return; }
     active = cat;
     clearButtons(cat);
@@ -438,23 +565,41 @@ a{color:var(--teal-dk)}
   }
 
   /* ---- search ---- */
-  var timer;
+  var timer, seen = false;
   qbox.addEventListener("input", function(){
     clearTimeout(timer);
     timer = setTimeout(function(){
       var t = qbox.value.trim().toLowerCase();
-      if (!t){ select(active, false); return; }
+      if (!t){ seen = false; select(active, false); return; }
       clearButtons(null);
       active = null;
       results.hidden = false;
-      var hits = RESOURCES.filter(function(r){
-        return [r.n, r.a, r.d, r.w, r.e, r.g].join(" ").toLowerCase().indexOf(t) > -1;
-      });
+      var hits = search(t);
       render(hits, "Results for \u201C"+qbox.value.trim()+"\u201D", true);
+      offerCategory(hits);
+      if (!seen){ seen = true; results.scrollIntoView({behavior:"smooth", block:"start"}); }
     }, 140);
   });
 
   document.getElementById("showAll").addEventListener("click", function(){ showEverything(true); });
+  /* "therapy" only appears in one listing's own text, but the whole mental
+     health category is what the person probably wants. Offer it. */
+  function offerCategory(hits){
+    var c = suggestCategory(lastWords);
+    if (!c) return;
+    var total = RESOURCES.filter(function(r){ return r.cats.indexOf(c.id) > -1; }).length;
+    if (hits.length >= total) return;
+    var p = document.createElement("p");
+    p.className = "offer";
+    p.innerHTML = 'Looking for something else? See all ' + total +
+                  ' listings under <button type="button" class="clear" data-go="' +
+                  c.id + '">' + esc(c.label) + '</button>';
+    body.insertBefore(p, body.firstChild);
+    p.querySelector("button").addEventListener("click", function(){
+      select(c.id, true);
+    });
+  }
+
   document.getElementById("clearBtn").addEventListener("click", function(){
     landing();
     document.getElementById("needs").scrollIntoView({behavior:"smooth", block:"start"});
