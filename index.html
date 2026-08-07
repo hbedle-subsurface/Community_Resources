@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find Help in Norman — First Congregational Church of Norman, UCC</title>
+<meta name="description" content="A directory of food, housing, utility, health and family help available in Norman, Noble, Little Axe, Lexington and Moore, Oklahoma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F2E38;
+  --ink-soft:#42626C;
+  --teal:#0E7396;
+  --teal-dk:#0A5670;
+  --sky:#DCEFF8;
+  --sky-line:#B9DCEC;
+  --green:#6BA644;
+  --green-dk:#48762A;
+  --paper:#EFF4F5;
+  --card:#FFFFFF;
+  --line:#D9E4E8;
+  --focus:#0A5670;
+  --shadow:0 1px 2px rgba(15,46,56,.06), 0 6px 18px rgba(15,46,56,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.55;
+}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.08;margin:0;font-weight:700}
+a{color:var(--teal-dk)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.wrap{width:min(1080px,100% - 2rem);margin-inline:auto}
+
+/* ---------- skip link ---------- */
+.skip{position:absolute;left:-9999px;top:0;background:#fff;padding:.75rem 1rem;z-index:50}
+.skip:focus{left:.5rem;top:.5rem}
+
+/* ---------- header ---------- */
+.masthead{background:#fff;border-bottom:1px solid var(--line)}
+.masthead .wrap{padding:1.25rem 0 1.1rem;display:flex;flex-direction:column;gap:.5rem}
+.masthead img{width:min(400px,88%);height:auto;display:block}
+.kicker{
+  font-family:"DM Mono",ui-monospace,monospace;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);margin:0;
+}
+
+/* ---------- urgent strip ---------- */
+.urgent{background:var(--teal-dk);color:#fff}
+.urgent .wrap{padding:.7rem 0;display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;align-items:baseline;font-size:.95rem}
+.urgent strong{font-weight:600}
+.urgent a{color:#fff;text-decoration-color:rgba(255,255,255,.5);text-underline-offset:3px;white-space:nowrap}
+.urgent .lead{font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sky-line)}
+
+/* ---------- hero ---------- */
+.hero{padding:2.4rem 0 1.3rem}
+@media (max-width:600px){.hero{padding:1.5rem 0 .6rem}}
+.hero h1{font-size:clamp(2rem,6.2vw,3.4rem);letter-spacing:-.02em;max-width:16ch}
+.hero p{max-width:56ch;color:var(--ink-soft);margin:.9rem 0 0}
+
+/* ---------- search ---------- */
+.searchbar{position:sticky;top:0;z-index:20;background:var(--paper);padding:.85rem 0;border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+.searchbar.stuck{border-bottom-color:var(--line);box-shadow:0 4px 14px rgba(15,46,56,.05)}
+.searchbar .wrap{display:flex;gap:.6rem;flex-wrap:wrap}
+.search-field{position:relative;flex:1 1 260px}
+.search-field svg{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);pointer-events:none}
+#q{
+  width:100%;padding:.85rem 1rem .85rem 2.8rem;font:inherit;color:var(--ink);
+  background:#fff;border:2px solid var(--line);border-radius:999px;
+}
+#q::placeholder{color:#7D949C}
+#q:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px var(--sky)}
+.btn{
+  font:inherit;font-weight:600;cursor:pointer;border-radius:999px;
+  border:2px solid var(--line);background:#fff;color:var(--ink);padding:.8rem 1.15rem;
+}
+.btn:hover{border-color:var(--teal);color:var(--teal-dk)}
+
+/* ---------- need picker ---------- */
+.picker{padding:.4rem 0 2rem}
+.eyebrow{
+  font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 .8rem;
+}
+.needs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem;list-style:none;padding:0;margin:0}
+.need{
+  width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;
+  padding:1rem 1rem .9rem;cursor:pointer;font:inherit;color:inherit;
+  display:grid;grid-template-columns:auto 1fr;gap:.15rem .8rem;align-items:start;
+  transition:border-color .15s,transform .15s,box-shadow .15s;
+}
+.need:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:var(--shadow)}
+.need[aria-pressed="true"]{border-color:var(--teal);background:var(--sky)}
+.need .ico{grid-row:span 2;width:34px;height:34px;color:var(--teal);flex:none}
+.need b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.08rem;font-weight:700;letter-spacing:-.01em}
+.need span{font-size:.87rem;color:var(--ink-soft);line-height:1.35}
+.need em{display:block;margin-top:.35rem;font-family:"DM Mono",monospace;font-style:normal;font-size:.75rem;color:var(--teal)}
+
+/* ---------- results ---------- */
+.results{padding:.5rem 0 3rem}
+.results-head{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:baseline;justify-content:space-between;margin-bottom:1.2rem}
+.results-head h2{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.02em}
+.count{font-family:"DM Mono",monospace;font-size:.82rem;color:var(--ink-soft)}
+.group{
+  font-family:"DM Mono",monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal-dk);margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid var(--sky-line);
+}
+.group:first-of-type{margin-top:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.8rem}
+.card{
+  background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);
+  border-radius:12px;padding:1rem 1.1rem 1.05rem;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:.45rem;
+}
+.card h3{font-size:1.12rem;letter-spacing:-.01em}
+.card .addr{font-size:.92rem;color:var(--teal-dk);font-weight:600;margin:0}
+.card .desc{font-size:.94rem;color:var(--ink-soft);margin:0}
+.card .links{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:auto;padding-top:.5rem}
+.tel{
+  font-family:"DM Mono",monospace;font-size:.95rem;font-weight:500;text-decoration:none;
+  background:var(--green-dk);color:#fff;padding:.55rem .9rem;border-radius:999px;
+  display:inline-flex;align-items:center;gap:.45rem;
+}
+.tel:hover{background:var(--ink)}
+.tel.alt{background:#fff;color:var(--green-dk);border:2px solid var(--green)}
+.tel.alt:hover{background:var(--sky);color:var(--teal-dk);border-color:var(--teal)}
+.tel small{font-family:"Public Sans",sans-serif;font-size:.72rem;opacity:.85}
+.ext{
+  font-size:.87rem;text-decoration:none;color:var(--teal-dk);border:2px solid var(--line);
+  padding:.5rem .85rem;border-radius:999px;display:inline-flex;align-items:center;gap:.4rem;word-break:break-word;
+}
+.ext:hover{border-color:var(--teal);background:#fff}
+.tag{
+  align-self:flex-start;font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--teal);background:var(--sky);padding:.2rem .5rem;border-radius:4px;
+}
+.empty{background:#fff;border:2px dashed var(--sky-line);border-radius:14px;padding:2rem;text-align:center}
+.empty p{margin:.4rem 0 0;color:var(--ink-soft)}
+
+/* ---------- footer ---------- */
+.footer{background:#fff;border-top:1px solid var(--line);padding:2.4rem 0 3rem}
+.footer h2{font-size:1.3rem;margin-bottom:.6rem}
+.footer p{max-width:62ch;color:var(--ink-soft);font-size:.94rem}
+.footer .pdf{
+  display:inline-flex;align-items:center;gap:.6rem;background:var(--teal-dk);color:#fff;
+  text-decoration:none;font-weight:600;padding:.85rem 1.3rem;border-radius:999px;margin:.4rem 0 1.4rem;
+}
+.footer .pdf:hover{background:var(--ink)}
+.fine{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:1.2rem;margin-top:1.6rem}
+
+/* ---------- wave divider ---------- */
+.wave{display:block;width:100%;height:22px;color:var(--sky-line)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  .urgent,.searchbar,.picker,.footer .pdf,.skip,.wave{display:none!important}
+  .card{break-inside:avoid;box-shadow:none;border:1px solid #bbb;border-left:3px solid #666}
+  .cards{grid-template-columns:1fr 1fr;gap:.4rem}
+  .tel,.ext{background:none!important;color:#000!important;border:none!important;padding:0 .6rem 0 0}
+  a[href]:after{content:""}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#needs">Skip to the list of needs</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <img src="logo.jpeg" alt="First Congregational Church of Norman, UCC — an open and affirming congregation">
+    <p class="kicker">Community resource directory</p>
+  </div>
+</header>
+
+<div class="urgent">
+  <div class="wrap">
+    <span class="lead">Start here</span>
+    <span><strong>Not sure who to call?</strong> Dial <a href="tel:211">211</a> or text <strong>211OK</strong> to <strong>898211</strong></span>
+    <span>Crisis or suicide: <a href="tel:988">988</a></span>
+    <span>Domestic violence: <a href="tel:+14057015540">405-701-5540</a></span>
+    <span>Emergency: <a href="tel:911">911</a></span>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Help is closer than you think.</h1>
+      <p>Free and low-cost help across Norman, Noble, Little Axe, Lexington and Moore. Pick what you need &mdash; you&rsquo;ll get addresses, hours, and a number you can tap to call.</p>
+    </div>
+  </section>
+
+  <div class="searchbar" id="searchbar">
+    <div class="wrap">
+      <div class="search-field">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#42626C" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search by name, street or word (try &ldquo;diapers&rdquo;)" aria-label="Search all resources" autocomplete="off">
+      </div>
+      <button class="btn" id="showAll" type="button">Show everything</button>
+      <button class="btn" id="printBtn" type="button">Print this list</button>
+    </div>
+  </div>
+
+  <section class="picker" id="needs">
+    <div class="wrap">
+      <p class="eyebrow">What do you need today?</p>
+      <div class="needs" id="needs-grid" role="group" aria-label="Choose a type of help"></div>
+    </div>
+  </section>
+
+  <section class="results" id="results" aria-live="polite">
+    <div class="wrap">
+      <div class="results-head">
+        <h2 id="results-title">Everything on the list</h2>
+        <p class="count" id="results-count"></p>
+      </div>
+      <div id="results-body"></div>
+    </div>
+  </section>
+</main>
+
+<svg class="wave" viewBox="0 0 1200 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14c60 0 60-9 120-9s60 9 120 9 60-9 120-9 60 9 120 9 60-9 120-9 60 9 120 9 60-9 120-9 60 9 120 9 60-9 120-9 60 9 120 9v8H0z" fill="currentColor" opacity=".55"/></svg>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Want the whole list on paper?</h2>
+    <p>Every listing here comes from the printed resource list compiled by McFarlin Memorial United Methodist Church, dated April 7, 2026. You can download it, print it, and hand it to someone.</p>
+    <a class="pdf" href="resource-list.pdf" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+      Download the full 6-page list (PDF)
+    </a>
+
+    <h2>Something out of date?</h2>
+    <p>Hours and rules change often. Please call ahead when you can. To report a change, correction or an agency that&rsquo;s missing, email Mary Sallee at <a href="mailto:mksallee@icloud.com">mksallee@icloud.com</a>. The most current version of the master list is always posted at <a href="https://mcfarlinumc.org/missions/if-you-need-help/" target="_blank" rel="noopener">mcfarlinumc.org</a>.</p>
+
+    <p class="fine">
+      Shared by First Congregational Church of Norman, UCC, an Open and Affirming congregation. Resource list compiled by McFarlin Memorial UMC, updated 4/7/2026. Unless another area code is shown, all numbers are 405.
+      For pantries outside Norman, call 211 or visit <a href="https://www.211oklahomahelpline.org/" target="_blank" rel="noopener">211oklahomahelpline.org</a>. For 24/7 outdoor pantries, see <a href="https://www.facebook.com/groups/pantrypagenorman/" target="_blank" rel="noopener">The Pantry Page</a> on Facebook, or <a href="https://www.findhelp.org" target="_blank" rel="noopener">findhelp.org</a>.
+    </p>
+  </div>
+</footer>
+
+<script src="resources.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var ICONS = {
+    food:'<path d="M4 3v8a3 3 0 0 0 3 3v7M7 3v6M10 3v6M17 3c-1.5 2-2 4-2 7 0 2 .7 3 2 3v8"/>',
+    shelter:'<path d="M4 11 12 4l8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/>',
+    money:'<path d="M4 6h16v12H4z"/><circle cx="12" cy="12" r="2.5"/><path d="M7 9v.01M17 15v.01"/>',
+    health:'<rect x="3.5" y="7" width="17" height="12.5" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M12 10.8v5M9.5 13.3h5"/>',
+    mental:'<path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/>',
+    children:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2"/><path d="M17 12a2.5 2.5 0 1 0 0-5"/><path d="M17 21v-1.5a4 4 0 0 0-1.5-3"/>',
+    clothing:'<path d="M9 3 5 6l2 3-1 11h12l-1-11 2-3-4-3"/><path d="M9 3c0 1.7 1.3 3 3 3s3-1.3 3-3"/>',
+    seniors:'<circle cx="11" cy="5" r="2.5"/><path d="M11 9v12M11 13l-4 3M11 13l4 3M18 10v11"/>',
+    transport:'<path d="M4 16V9l2-4h12l2 4v7"/><path d="M2 16h20"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/>',
+    general:'<circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.7-.9 1.4v.4"/><path d="M12 17.2v.01"/>',
+    pets:'<circle cx="8" cy="8" r="1.8"/><circle cx="16" cy="8" r="1.8"/><circle cx="5" cy="13" r="1.6"/><circle cx="19" cy="13" r="1.6"/><path d="M12 12c2.8 0 5 2.4 5 4.6 0 1.6-1.2 2.6-2.8 2.4-.9-.1-1.4-.4-2.2-.4s-1.3.3-2.2.4C8.2 19.2 7 18.2 7 16.6 7 14.4 9.2 12 12 12z"/>'
+  };
+
+  var grid = document.getElementById("needs-grid"),
+      body = document.getElementById("results-body"),
+      title = document.getElementById("results-title"),
+      count = document.getElementById("results-count"),
+      qbox = document.getElementById("q"),
+      bar  = document.getElementById("searchbar");
+
+  var active = null;
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g,function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+    });
+  }
+  function tally(id){
+    return RESOURCES.filter(function(r){ return r.cats.indexOf(id) > -1; }).length;
+  }
+
+  /* ---- build the need picker ---- */
+  CATEGORIES.forEach(function(c){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "need";
+    b.setAttribute("aria-pressed","false");
+    b.dataset.cat = c.id;
+    b.innerHTML =
+      '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '+
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[c.id]+'</svg>'+
+      '<b>'+esc(c.label)+'</b>'+
+      '<span>'+esc(c.blurb)+'<em>'+tally(c.id)+' places</em></span>';
+    b.addEventListener("click", function(){
+      select(active === c.id ? null : c.id, true);
+    });
+    grid.appendChild(b);
+  });
+
+  /* ---- one card ---- */
+  function card(r, showTag){
+    var el = document.createElement("article");
+    el.className = "card";
+    var html = "";
+
+    if (showTag) {
+      var cat = CATEGORIES.filter(function(c){ return c.id === r.cats[0]; })[0];
+      if (cat) html += '<span class="tag">'+esc(cat.label)+'</span>';
+    }
+    html += "<h3>"+esc(r.n)+"</h3>";
+    if (r.a) html += '<p class="addr">'+esc(r.a)+"</p>";
+    if (r.d) html += '<p class="desc">'+esc(r.d)+"</p>";
+
+    var links = "";
+    if (r.p)  links += phoneLink(r.p, null, "");
+    if (r.p2) links += phoneLink(r.p2.num, r.p2.label, " alt");
+    if (r.w)  links += '<a class="ext" href="https://'+esc(r.w.replace(/^https?:\/\//,""))+
+                       '" target="_blank" rel="noopener">'+esc(r.w)+" &#8599;</a>";
+    if (r.e)  links += '<a class="ext" href="mailto:'+esc(r.e)+'">'+esc(r.e)+"</a>";
+    if (links) html += '<div class="links">'+links+"</div>";
+
+    el.innerHTML = html;
+    return el;
+  }
+
+  function phoneLink(num, label, extra){
+    var digits = num.replace(/\D/g,"");
+    var href = digits.length === 10 ? "+1"+digits : digits;
+    return '<a class="tel'+extra+'" href="tel:'+href+'">'+
+             '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" '+
+             'stroke-width="2.2" stroke-linecap="round" aria-hidden="true">'+
+             '<path d="M4 5c0 8.3 6.7 15 15 15l1.5-3.4-4-1.7-1.8 1.9a12 12 0 0 1-5.5-5.5l1.9-1.8-1.7-4L5.8 3.5A2 2 0 0 0 4 5z"/></svg>'+
+             (label ? '<small>'+esc(label)+"</small> " : "")+esc(num)+"</a>";
+  }
+
+  /* ---- render ---- */
+  function render(list, heading, showTags){
+    title.textContent = heading;
+    count.textContent = list.length === 1 ? "1 listing" : list.length + " listings";
+    body.innerHTML = "";
+
+    if (!list.length){
+      body.innerHTML = '<div class="empty"><h3>No matches for that word.</h3>'+
+        "<p>Try a shorter word, choose a category above, or call 211 and a person will help you find it.</p></div>";
+      return;
+    }
+
+    var groups = [];
+    list.forEach(function(r){
+      var g = (!showTags && r.g) ? r.g : "";
+      if (groups.indexOf(g) === -1) groups.push(g);
+    });
+
+    groups.forEach(function(g){
+      if (g){
+        var h = document.createElement("p");
+        h.className = "group";
+        h.textContent = g;
+        body.appendChild(h);
+      }
+      var holder = document.createElement("div");
+      holder.className = "cards";
+      list.filter(function(r){ return ((!showTags && r.g) ? r.g : "") === g; })
+          .forEach(function(r){ holder.appendChild(card(r, showTags)); });
+      body.appendChild(holder);
+    });
+  }
+
+  function select(cat, scroll){
+    active = cat;
+    qbox.value = "";
+    Array.prototype.forEach.call(grid.children, function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.cat === cat));
+    });
+
+    if (!cat){
+      render(RESOURCES, "Everything on the list", true);
+      if (history.replaceState) history.replaceState(null,"",location.pathname);
+      return;
+    }
+    var meta = CATEGORIES.filter(function(c){ return c.id === cat; })[0];
+    render(RESOURCES.filter(function(r){ return r.cats.indexOf(cat) > -1; }), meta.label, false);
+    if (history.replaceState) history.replaceState(null,"","#"+cat);
+    if (scroll) document.getElementById("results").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  /* ---- search ---- */
+  var timer;
+  qbox.addEventListener("input", function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var t = qbox.value.trim().toLowerCase();
+      if (!t){ select(active, false); return; }
+      Array.prototype.forEach.call(grid.children, function(b){ b.setAttribute("aria-pressed","false"); });
+      active = null;
+      var hits = RESOURCES.filter(function(r){
+        return [r.n, r.a, r.d, r.w, r.e, r.g].join(" ").toLowerCase().indexOf(t) > -1;
+      });
+      render(hits, "Results for \u201C"+qbox.value.trim()+"\u201D", true);
+    }, 140);
+  });
+
+  document.getElementById("showAll").addEventListener("click", function(){ select(null,true); });
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+
+  /* ---- sticky shadow ---- */
+  var sentinel = document.querySelector(".hero");
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(e){
+      bar.classList.toggle("stuck", !e[0].isIntersecting);
+    }, {rootMargin:"-60px 0px 0px 0px"}).observe(sentinel);
+  }
+
+  /* ---- open on a category if the link had one ---- */
+  var start = location.hash.replace("#","");
+  select(CATEGORIES.some(function(c){ return c.id === start; }) ? start : null, false);
+})();
+</script>
+</body>
+</html>
