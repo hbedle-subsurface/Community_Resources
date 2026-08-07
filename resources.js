@@ -18,18 +18,32 @@
      g     subheading it sits under, if any
    ============================================================ */
 
+/* `kw` is the search vocabulary for each category: everyday words people
+   actually type, which may not appear in any listing's own text. Add words
+   here and search gets smarter across every listing in that category. */
 const CATEGORIES = [
-  { id: "food",      label: "Food & meals",            blurb: "Pantries, hot meals, senior lunches" },
-  { id: "shelter",   label: "A place to stay",         blurb: "Shelters, transitional and low-cost housing" },
-  { id: "money",     label: "Rent, bills & taxes",     blurb: "Utility help, rent help, free tax prep" },
-  { id: "health",    label: "Health & medical",        blurb: "Free clinics, prescriptions, women's health" },
-  { id: "mental",    label: "Mental health & recovery",blurb: "Counseling, crisis care, addiction support" },
-  { id: "children",  label: "Children & parents",      blurb: "Diapers, childcare, teens, family support" },
-  { id: "clothing",  label: "Clothing & laundry",      blurb: "Closets, thrift vouchers, free laundry" },
-  { id: "seniors",   label: "Seniors & veterans",      blurb: "Aging services, caregivers, VA claims" },
-  { id: "transport", label: "Getting around",          blurb: "Bus, rides, gas cards, car repair" },
-  { id: "general",   label: "Legal, ID & other help",  blurb: "IDs, legal aid, safety, jobs, showers" },
-  { id: "pets",      label: "Pets",                    blurb: "Pet food, supplies, spay and neuter" }
+  { id: "food",      label: "Food & meals",            blurb: "Pantries, hot meals, senior lunches",
+    kw: "food pantry pantries groceries grocery meal meals eat eating hungry hunger starving lunch dinner supper breakfast free food box commodities soup kitchen snacks feeding fed nothing to eat" },
+  { id: "shelter",   label: "A place to stay",         blurb: "Shelters, transitional and low-cost housing",
+    kw: "shelter shelters homeless homelessness unhoused housing house home sleep sleeping bed beds stay staying overnight night nowhere to go evicted eviction kicked out apartment roof living in my car" },
+  { id: "money",     label: "Rent, bills & taxes",     blurb: "Utility help, rent help, free tax prep",
+    kw: "rent rental utilities utility bill bills money financial finance cash assistance electric electricity power lights gas water heat heating cooling air conditioning cut off cutoff shut off shutoff disconnect disconnected past due behind late taxes tax refund deposit landlord og&e" },
+  { id: "health",    label: "Health & medical",        blurb: "Free clinics, prescriptions, women's health",
+    kw: "health medical doctor dr clinic sick illness hurt injury prescription prescriptions medicine meds medication pharmacy dentist dental teeth tooth eyes vision pregnancy pregnant baby test std sti hiv shots immunization vaccine insurance uninsured no insurance nurse checkup exam" },
+  { id: "mental",    label: "Mental health & recovery",blurb: "Counseling, crisis care, addiction support",
+    kw: "mental health counseling counselor counsel therapy therapist psychiatrist psychologist depression depressed anxiety anxious stress trauma ptsd bipolar addiction addict alcohol alcoholic drinking drugs drug substance abuse sober sobriety recovery relapse detox rehab aa na twelve step 12 step suicide suicidal kill myself killing myself end my life end it all want to die don't want to live hurt myself harm myself self harm cutting hopeless can't go on crisis psychiatric inpatient outpatient narcan naloxone overdose fentanyl grief grieving loss caregiver support group" },
+  { id: "children",  label: "Children & parents",      blurb: "Diapers, childcare, teens, family support",
+    kw: "children child kid kids baby babies infant infants toddler diapers diaper wipes formula bottles crib car seat parent parents parenting mom mother dad father family teen teens teenager youth daycare day care childcare school students tutoring after school foster adoption custody wic" },
+  { id: "clothing",  label: "Clothing & laundry",      blurb: "Closets, thrift vouchers, free laundry",
+    kw: "clothing clothes clothe coat coats jacket jackets shoes boots socks underwear uniforms school clothes thrift closet laundry wash washing washer dryer detergent quarters hygiene soap shampoo toiletries blankets bedding towels" },
+  { id: "seniors",   label: "Seniors & veterans",      blurb: "Aging services, caregivers, VA claims",
+    kw: "senior seniors elder elderly older aging aged retired retirement veteran veterans vet vets va military service member army navy caregiver caregivers respite medicare medicaid disability disabled wheelchair walker cane hearing grandparent grandparents grandchildren" },
+  { id: "transport", label: "Getting around",          blurb: "Bus, rides, gas cards, car repair",
+    kw: "transportation transport ride rides riding bus buses transit route stop fare gas gasoline gas card fuel car auto vehicle repair repairs mechanic tires bike bicycle bicycles taxi uber lyft embark get to appointment no car stranded" },
+  { id: "general",   label: "Legal, ID & other help",  blurb: "IDs, legal aid, safety, jobs, showers",
+    kw: "legal lawyer attorney court lawsuit sue rights id identification drivers license birth certificate social security card documents paperwork jobs job employment work hiring resume unemployment shower showers bathroom internet computer wifi phone safety domestic violence abuse abused hit partner boyfriend husband stalking trafficking rape assault lgbtq gay trans disability interpreter translation immigration" },
+  { id: "pets",      label: "Pets",                    blurb: "Pet food, supplies, spay and neuter",
+    kw: "pet pets dog dogs puppy cat cats kitten animal animals vet veterinary spay neuter fixed shots pet food litter leash adoption stray" }
 ];
 
 const RESOURCES = [
@@ -130,6 +144,9 @@ const RESOURCES = [
   { n: "Women's Resource Center", d: "Confidential support. Rape Crisis Hotline: 405-701-5660.", p: "405-701-5550", p2: { label: "Rape Crisis Hotline", num: "405-701-5660" }, w: "wrcnormanok.org", cats: ["health", "general"] },
 
   /* ---------- MENTAL HEALTH & RECOVERY ---------- */
+  { n: "988 Suicide & Crisis Lifeline", d: "Free and confidential support, 24 hours a day, for suicidal thoughts, emotional distress, or a mental health or substance use crisis. Call or text 988. En espa\u00f1ol: 888-628-9454.", pri: 1, p: "988", p2: { label: "Espa\u00f1ol", num: "888-628-9454" }, cats: ["mental"] },
+  { n: "Oklahoma Tobacco Helpline", d: "Free coaching and quit support for tobacco and vaping. Call 1-800-QUIT-NOW.", p: "800-784-8669", cats: ["mental"] },
+  { n: "Problem Gambling Helpline", d: "Confidential help for gambling problems, for the gambler or a family member. Available 24 hours.", p: "800-522-4700", cats: ["mental"] },
   { n: "A Better Way", d: "Boots-on-the-ground help for people who are homeless or living with mental illness, connecting them to case management and employment.", p: "405-768-5572", w: "mhaok.org/ABW", cats: ["mental"] },
   { n: "Celebrate Recovery at Alameda Church of Christ", a: "801 E. Alameda", d: "Find freedom from life's hurts, hang-ups and habits. Meets Tuesday evenings at 6:30. Call for more information.", p: "405-321-0788", w: "alameda.church/connect/celebrate-recovery", cats: ["mental"] },
   { n: "Alzheimer's Support Group", a: "419 S. University", d: "Luncheon on the 3rd Wednesday in Room 209 at McFarlin Memorial UMC. RSVP one week in advance to 405-321-3484, ext. 115.", p: "405-321-3484", cats: ["mental", "seniors"] },
