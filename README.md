@@ -4,6 +4,8 @@ A one-page site for First Congregational Church of Norman, UCC that lets people
 pick the kind of help they need and get addresses, hours and tap-to-call phone
 numbers. Built from the McFarlin Memorial UMC resource list dated 4/7/2026.
 
+Open it here - https://hbedle-subsurface.github.io/Community_Resources/ 
+
 ## Files
 
 | File | What it is |
