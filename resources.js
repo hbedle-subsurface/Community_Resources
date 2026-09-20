@@ -1,6 +1,6 @@
 /* ============================================================
    RESOURCE DATA — from the McFarlin Memorial UMC Resource List
-   dated 4.7.26.
+   dated 9.2.26.
 
    TO UPDATE A LISTING: find it below and edit the text between
    the quote marks. Keep the punctuation (commas, braces) exactly
@@ -31,9 +31,9 @@ const CATEGORIES = [
   { id: "health",    label: "Health & medical",        blurb: "Free clinics, prescriptions, women's health",
     kw: "health medical doctor dr clinic sick illness hurt injury prescription prescriptions medicine meds medication pharmacy dentist dental teeth tooth eyes vision pregnancy pregnant baby test std sti hiv shots immunization vaccine insurance uninsured no insurance nurse checkup exam" },
   { id: "mental",    label: "Mental health & recovery",blurb: "Counseling, crisis care, addiction support",
-    kw: "mental health counseling counselor counsel therapy therapist psychiatrist psychologist depression depressed anxiety anxious stress trauma ptsd bipolar addiction addict alcohol alcoholic drinking drugs drug substance abuse sober sobriety recovery relapse detox rehab aa na twelve step 12 step suicide suicidal kill myself killing myself end my life end it all want to die don't want to live hurt myself harm myself self harm cutting hopeless can't go on crisis psychiatric inpatient outpatient narcan naloxone overdose fentanyl grief grieving loss caregiver support group" },
+    kw: "mental health counseling counselor counsel therapy therapist psychiatrist psychologist depression depressed anxiety anxious stress trauma ptsd bipolar addiction addict alcohol alcoholic drinking drugs drug substance abuse sober sobriety recovery relapse detox rehab aa na twelve step 12 step suicide suicidal kill myself killing myself end my life end it all want to die don't want to live hurt myself harm myself self harm cutting hopeless can't go on crisis psychiatric inpatient outpatient narcan naloxone overdose fentanyl grief grieving loss caregiver support group sober living halfway house" },
   { id: "children",  label: "Children & parents",      blurb: "Diapers, childcare, teens, family support",
-    kw: "children child kid kids baby babies infant infants toddler diapers diaper wipes formula bottles crib car seat parent parents parenting mom mother dad father family teen teens teenager youth daycare day care childcare school students tutoring after school foster adoption custody wic" },
+    kw: "children child kid kids baby babies infant infants toddler diapers diaper wipes formula bottles crib car seat parent parents parenting mom mother dad father family teen teens teenager youth daycare day care childcare school students tutoring after school foster adoption custody wic breastfeeding breastfeed nursing lactation" },
   { id: "clothing",  label: "Clothing & laundry",      blurb: "Closets, thrift vouchers, free laundry",
     kw: "clothing clothes clothe coat coats jacket jackets shoes boots socks underwear uniforms school clothes thrift closet laundry wash washing washer dryer detergent quarters hygiene soap shampoo toiletries blankets bedding towels" },
   { id: "seniors",   label: "Seniors & veterans",      blurb: "Aging services, caregivers, VA claims",
@@ -62,13 +62,13 @@ const RESOURCES = [
   { n: "Lifespring Church", a: "600 W. Tecumseh", d: "1st Saturday, 10–11. First come, first served while supplies last.", p: "405-292-7770", w: "mylifespring.church/share-ministry", cats: ["food"], g: "Norman" },
   { n: "McFarlin Memorial UMC Pantry", a: "401 S. University", d: "Tues and Thurs 10–4, plus two Saturdays a month 10–1 (call for dates). Two-week limit. Serving residents of Norman, Noble and Little Axe.", p: "405-766-7962", cats: ["food"], g: "Norman" },
   { n: "McFarlin Tuesday Together Meal", a: "419 S. University", d: "Free community dinner, 6:00–7:00 in Fenn Hall, 2nd Tuesday of the month. Call to confirm.", p: "405-321-3484", cats: ["food"], g: "Norman" },
-  { n: "Meals on Wheels of Norman", a: "528 E. Main", d: "Office hours M–Th 7:30–3:30, F 7:30–2. Must be over 62; under 62 requires a disability or doctor referral.", p: "405-321-7272", w: "mealsonwheelsnorman.com", cats: ["food", "seniors"], g: "Norman" },
-  { n: "Outreach Thrift", a: "621 12th Ave NE", d: "Refrigerated and canned goods pantry available during store hours: M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["food"], g: "Norman" },
+  { n: "Meals on Wheels of Norman", a: "921 N. Lahoma", d: "Office hours M–Th 7:30–3:30, F 7:30–2. Must be over 62; under 62 requires a disability or doctor referral.", p: "405-321-7272", w: "mealsonwheelsnorman.com", cats: ["food", "seniors"], g: "Norman" },
+  { n: "Outreach Thrift", a: "315 E. Alameda", d: "Refrigerated and canned goods pantry available during store hours: M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["food"], g: "Norman" },
   { n: "Roserock Villa", a: "2227 W. Lindsey", d: "Lunch for seniors with 24-hour call-in reservation. Suggested donation $3 for ages 60+.", p: "405-321-3200", w: "agingservicesok.com", cats: ["food", "seniors"], g: "Norman" },
   { n: "Salvation Army — community meals", a: "318 E. Hayes", d: "Hot meals seven days a week. Dinner served 5:00–5:45.", p: "405-364-9910", cats: ["food"], g: "Norman" },
-  { n: "Salvation Army Food Pantry", a: "1124 N. Porter", d: "Wednesdays only. Call any time to make an appointment. Client-choice pantry. 30-day limit.", p: "405-364-9910", cats: ["food"], g: "Norman" },
+  { n: "Salvation Army Food Pantry", a: "1124 N. Porter", d: "Call any time to make an appointment. Client-choice pantry. 30-day limit.", p: "405-364-9910", cats: ["food"], g: "Norman" },
   { n: "The Mission", a: "2525 E. Lindsey", d: "Mon–Wed 10–2, Thurs 2–5, Fri 10–12. No ID required. 30-day limit.", p: "405-321-8880", cats: ["food"], g: "Norman" },
-  { n: "The Share Center (Food and Shelter)", a: "213 Reed", d: "Tues and Wed 2:30–5:30, Thurs and Fri 11–2, 3rd Sat 12–2. Norman, Noble, Lexington or McClain County. Photo ID and proof of residence.", p: "405-701-1890", cats: ["food"], g: "Norman" },
+  { n: "The Share Center (Food and Shelter)", a: "213 Reed", d: "Tues and Wed 2:30–5:30, Thurs 2–5, Fri 10–12. Norman, Noble, Lexington or McClain County. Photo ID and proof of residence.", p: "405-701-1890", cats: ["food"], g: "Norman" },
   { n: "South Canadian Valley Pantry", a: "2217 24th SW", d: "Every 2nd Saturday of the month, 10–11:30 a.m.", p: "405-364-4051", cats: ["food"], g: "Norman" },
   { n: "University of Oklahoma Food Pantry", a: "331 Cate Center Dr.", d: "Current dates and hours online. Students, staff or faculty; OU employee ID card required.", w: "ou.edu/foodpantry", cats: ["food"], g: "Norman" },
   { n: "24/7 outdoor pantries in Norman", d: "A community-maintained list of self-serve pantries you can visit any time, day or night.", w: "facebook.com/groups/pantrypagenorman/", cats: ["food"], g: "Norman" },
@@ -110,7 +110,6 @@ const RESOURCES = [
   { n: "Alameda Church of Christ — utilities", a: "801 E. Alameda", d: "Requires a cut-off notice. Call Monday at 8:30 a.m. for a Wednesday appointment. Once a year, three times maximum.", p: "405-321-0788", cats: ["money"], g: "Rent & utilities" },
   { n: "Catholic Charities — utilities", a: "1232 N. Classen, OKC", d: "Six online applications accepted on Mondays at 8:30 a.m.", p: "405-523-3000", w: "catholiccharities.org/emergency-rent-utility-assistance", cats: ["money"], g: "Rent & utilities" },
   { n: "Community Action (COCAA), Moore", a: "224 S. Chestnut Ave", d: "Low-income family utility assistance up to $150 (OG&E). Rental assistance when funds are available.", p: "405-434-6100", w: "cocaa.org", cats: ["money"], g: "Rent & utilities" },
-  { n: "Sanctuary Women's Day Shelter", a: "425 E. Tonhawa", d: "Support for women, including rental and electric deposits. Call for information.", p: "405-701-8293", cats: ["money"], g: "Rent & utilities" },
   { n: "Food and Shelter — rent", a: "201 Reed", d: "Call for information and availability, M–F 8–4. Proof of income and an eviction notice are required.", p: "405-360-4954", cats: ["money"], g: "Rent & utilities" },
   { n: "Lifespring — rent and utilities", a: "600 W. Tecumseh", d: "1st Saturday 10–11. Up to $100 rent or $75 utility assistance. Bring a cut-off notice or letter from your landlord. Photo ID required.", p: "405-292-7770", w: "lifespringnorman.com", cats: ["money"], g: "Rent & utilities" },
   { n: "LIHEAP — home energy assistance", d: "Winter heating and summer cooling funding for eligible low-income households.", e: "LIHEAP2@okdhs.org", cats: ["money"], g: "Rent & utilities" },
@@ -132,7 +131,7 @@ const RESOURCES = [
 
   /* ---------- HEALTH ---------- */
   { n: "Blanchard Healing Hands Community Clinic", a: "600 N. Main, Blanchard", d: "Free primary care for people without insurance, 3rd Thursday 6–9 p.m. Prescriptions filled on site.", p: "405-673-6374", cats: ["health"] },
-  { n: "Cleveland County Health Department", a: "250 12th Ave NE", d: "M–Th 8–11 and 1–4, Fri 8–11. STD testing, family planning and immunizations by appointment.", p: "405-321-4048", cats: ["health"] },
+  { n: "Cleveland County Health Department", a: "250 12th Ave NE", d: "M–Th 8–11 and 1–4, Fri 8–11. STD testing, family planning and immunizations by appointment. No COVID vaccines.", p: "405-321-4048", cats: ["health"] },
   { n: "The Eden Clinic", a: "1125 N. Porter, Ste 200", d: "Free pregnancy tests and ultrasound to confirm pregnancy. STI testing and treatment for women and men.", p: "405-579-4673", w: "theedenclinic.com", cats: ["health"] },
   { n: "Hope Pregnancy Center", d: "A safe, confidential place to explore your options without judgement. Pregnancy tests.", p: "405-688-8700", w: "thinkimpregnant.org", cats: ["health"] },
   { n: "J.D. McCarty Center", a: "2002 E. Robinson", d: "Therapy and medical care for children ages 0–21 with developmental disabilities.", p: "405-307-2800", w: "jdmc.org", cats: ["health", "children"] },
@@ -161,6 +160,7 @@ const RESOURCES = [
   { n: "Green Shoe Foundation", d: "Five-day retreats for adults carrying co-dependency from childhood trauma.", p: "405-697-2109", cats: ["mental"] },
   { n: "Griffin Memorial Hospital", a: "900 E. Main", d: "Inpatient psychiatric care for adults with mental health or substance abuse issues. No insurance required.", p: "405-573-6623", cats: ["mental"] },
   { n: "NAMI — National Alliance on Mental Illness", d: "Call or text for information about the Norman group.", p: "405-408-0984", e: "naminormanok@gmail.com", w: "NAMIoklahoma.org", cats: ["mental"] },
+  { n: "Oschavilla Sober Living", a: "Oklahoma County", d: "A men's sober living home offering a safe, structured and supportive recovery environment. Monthly fee.", p: "405-919-4471", cats: ["mental"] },
   { n: "Red Rock Outpatient Services", a: "900 N. Porter #110", d: "Outpatient psychiatric crisis center for adults and children, M–Th 8–5, Fri 8–4.", p: "405-424-7711", cats: ["mental"] },
   { n: "Red Rock Crisis Unit", a: "900 E. Main St., Bldg 52", d: "Adult inpatient services, open 24/7. Crisis hotline: 405-987-7625.", p: "405-307-4811", p2: { label: "Crisis hotline", num: "405-987-7625" }, w: "red-rock.com/resources", cats: ["mental"] },
   { n: "Restore Behavioral Health", a: "1008 24th Ave NW", d: "A safe place to find help, hope and healing. Low-cost options available.", p: "405-310-3262", w: "restore-bh.com", cats: ["mental"] },
@@ -185,7 +185,7 @@ const RESOURCES = [
   { n: "SoonerStart (birth to 3)", a: "250 12th Ave NE", d: "Early intervention for developmental delays. Children First for first-time moms — referrals must be made before 29 weeks.", p: "405-321-4048", cats: ["children"] },
   { n: "Child Guidance Program (birth to 12)", d: "Behavioral health, child development, hearing and speech-language pathology screenings and treatment.", p: "405-321-4048", cats: ["children"] },
   { n: "Crossroads Youth & Family Center", a: "1650 Tecumseh, Ste 500", d: "Counseling and an emergency youth shelter.", p: "405-321-0240", w: "crossroadsyfs.org", cats: ["children", "shelter"] },
-  { n: "Cleveland County DHS", a: "303 E. Comanche / 631 E. Robinson", d: "Adult and family services. Apply online, in person or by phone. SNAP applications: 405-487-5483. EBT cards available 8:30–4:30.", p: "405-522-5050", p2: { label: "SNAP", num: "405-487-5483" }, w: "okdhslive.org", cats: ["children", "general", "food"] },
+  { n: "Cleveland County DHS", a: "303 E. Comanche / 631 E. Robinson", d: "Adult and family services. Apply online, in person or by phone. Norman office: 405-573-8300. SNAP applications: 405-487-5483. EBT cards available 8:30–4:30.", p: "405-522-5050", p2: { label: "SNAP", num: "405-487-5483" }, w: "okdhslive.org", cats: ["children", "general", "food"] },
   { n: "Early Birds", d: "A free program helping caregivers of children 0–5, and pregnant moms, learn about child development and school readiness.", w: "sunbeamfamilyservices.org/earlybirds/", cats: ["children"] },
   { n: "Eden Clinic — parenting", d: "Birth preparation, parenting support for moms and dads, and baby supplies. Call or text.", p: "405-579-4673", cats: ["children"] },
   { n: "Fostering Futures", d: "Serving children involved with the OKDHS child welfare system in Cleveland, McClain and Garvin counties.", p: "405-579-5000", w: "fosteringfuturesok.org", cats: ["children"] },
@@ -195,6 +195,7 @@ const RESOURCES = [
   { n: "Kaleidoscope Grief Support", d: "Free support for children ages 3–18 and families grieving the death of a loved one.", p: "405-306-0052", w: "kaleidescopegriefsupport.com", cats: ["children", "mental"] },
   { n: "Loveworks Leadership", a: "219 E. Gray", d: "Free after-school opportunities and events for middle schoolers, building leadership, social and life skills.", p: "405-566-0316", w: "loveworksleadership.org", cats: ["children"] },
   { n: "Oklahoma ABLE Tech — infants and toddlers", d: "Partners with SoonerStart to provide assistive technology for infants and toddlers with disabilities.", w: "okabletech.org", cats: ["children"] },
+  { n: "Oklahoma Breastfeeding Resource Center", d: "Breastfeeding resources through the OK BF app and website.", p: "405-271-6162", w: "breastfeedinghealth.org", cats: ["children", "health"] },
   { n: "Oklahoma Baptist Homes for Children", d: "Child-focused care for ages 6–18 coming from hurting families — divorce, drug abuse, incarceration, sickness.", w: "obhc.org/children", cats: ["children"] },
   { n: "Operation School Bell", d: "New clothes and shoes for K–12 students in Norman Public Schools and Little Axe Schools. Contact your school counselor.", cats: ["children", "clothing"] },
   { n: "Open Heart Resource Room", d: "Delivers items to children in out-of-home care. Referral from an agency, minister or DHS required.", p: "405-329-8041", e: "OpenHeartResourceRoom@gmail.com", cats: ["children"] },
@@ -212,7 +213,7 @@ const RESOURCES = [
   { n: "Crosspointe Church", a: "2601 SE 24th", d: "Fridays 8:30–11 in the Crosspointe Care Center. Picture ID required. Five to six week limit.", p: "405-329-0823", cats: ["clothing"] },
   { n: "First Baptist of Norman", a: "211 W. Comanche", d: "By appointment on 2nd and 4th Fridays. You can also request during office hours. Cleveland County residents only.", p: "405-321-1753", cats: ["clothing"] },
   { n: "First Presbyterian Thrift Shop", a: "404 Toberman", d: "Thursdays 9–4, except holidays and school closings. Minimal cost. Emergency vouchers 1–2:30.", p: "405-321-0933", cats: ["clothing"] },
-  { n: "Outreach Thrift", a: "621 12th Ave NE", d: "Accepts referral vouchers from agencies for free clothing. M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["clothing"] },
+  { n: "Outreach Thrift", a: "315 E. Alameda", d: "Accepts referral vouchers from agencies for free clothing. M–F 10–6, Sat 10–7, Sun 12–6.", p: "405-928-2072", cats: ["clothing"] },
   { n: "Salvation Army — clothing vouchers", a: "1124 N. Porter", d: "Clothing voucher for people who are unhoused, any day except Wednesday. ID and proof of homelessness required.", p: "405-364-9910", cats: ["clothing"] },
   { n: "St. Joseph's Catholic Thrift Store", a: "211 N. Porter", d: "Wednesdays 9–1. Minimal cost, free if you can't afford it. Once a month.", p: "405-701-3693", cats: ["clothing"] },
 
