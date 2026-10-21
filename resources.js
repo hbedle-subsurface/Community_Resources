@@ -1,6 +1,6 @@
 /* ============================================================
    RESOURCE DATA — from the McFarlin Memorial UMC Resource List
-   dated 9.2.26.
+   dated 10.23.26.
 
    TO UPDATE A LISTING: find it below and edit the text between
    the quote marks. Keep the punctuation (commas, braces) exactly
@@ -51,7 +51,6 @@ const RESOURCES = [
   /* ---------- FOOD: NORMAN ---------- */
   { n: "Adventist Community Services", a: "1818 E. Alameda", d: "3rd, 4th and 5th Tuesdays, 9–12. Current ID and proof of residence in Cleveland or McClain County.", p: "405-250-3589", cats: ["food"], g: "Norman" },
   { n: "Aging Services — Adult Wellness & Education Center", a: "602 N. Findlay", d: "Meals for seniors served M–F, 11:30–12. Reservations must be made in person on site the previous Friday between 11:00 and 11:30 for the following week. Suggested donation. (Flyer lists 572-206-3718 — call Aging Services at 405-321-3200 to confirm.)", cats: ["food", "seniors"], g: "Norman" },
-  { n: "Alameda Baptist Church", a: "1503 Alameda", d: "Tues and Thurs 10–12, by appointment only. Call or leave a message by 8 a.m. that morning. Norman and Noble residents with ID. Limit 4 times.", p: "405-329-5157", cats: ["food"], g: "Norman" },
   { n: "Alameda Church of Christ", a: "801 E. Alameda", d: "Wed 10–12, 4th Thurs 5–6:30, 2nd Sat 9–11. Photo ID for residents of Cleveland or McClain County.", p: "405-321-0788", cats: ["food"], g: "Norman" },
   { n: "Antioch Norman — \"The Table\"", a: "1330 E. Lindsey", d: "Community dinner on the 1st and 3rd Mondays of the month, 6:00–7:30.", p: "405-310-4343", cats: ["food"], g: "Norman" },
   { n: "Beacon Project (Pantry Partners)", a: "513 W. Gray", d: "Serving Norman Public Schools high school teens, ages 13–19.", p: "405-217-2077", e: "info@thebeaconproject.org", cats: ["food", "children"], g: "Norman" },
@@ -68,7 +67,7 @@ const RESOURCES = [
   { n: "Salvation Army — community meals", a: "318 E. Hayes", d: "Hot meals seven days a week. Dinner served 5:00–5:45.", p: "405-364-9910", cats: ["food"], g: "Norman" },
   { n: "Salvation Army Food Pantry", a: "1124 N. Porter", d: "Call any time to make an appointment. Client-choice pantry. 30-day limit.", p: "405-364-9910", cats: ["food"], g: "Norman" },
   { n: "The Mission", a: "2525 E. Lindsey", d: "Mon–Wed 10–2, Thurs 2–5, Fri 10–12. No ID required. 30-day limit.", p: "405-321-8880", cats: ["food"], g: "Norman" },
-  { n: "The Share Center (Food and Shelter)", a: "213 Reed", d: "Tues and Wed 2:30–5:30, Thurs 2–5, Fri 10–12. Norman, Noble, Lexington or McClain County. Photo ID and proof of residence.", p: "405-701-1890", cats: ["food"], g: "Norman" },
+  { n: "The Share Center (Food and Shelter)", a: "213 Reed", d: "Tues and Wed 2:30–5:30, Thurs and Fri 11–2, 3rd Saturday 12–2. Arrive 30 minutes early. Norman, Noble, Lexington or McClain County. Photo ID and proof of residence.", p: "405-701-1890", cats: ["food"], g: "Norman" },
   { n: "South Canadian Valley Pantry", a: "2217 24th SW", d: "Every 2nd Saturday of the month, 10–11:30 a.m.", p: "405-364-4051", cats: ["food"], g: "Norman" },
   { n: "University of Oklahoma Food Pantry", a: "331 Cate Center Dr.", d: "Current dates and hours online. Students, staff or faculty; OU employee ID card required.", w: "ou.edu/foodpantry", cats: ["food"], g: "Norman" },
   { n: "24/7 outdoor pantries in Norman", d: "A community-maintained list of self-serve pantries you can visit any time, day or night.", w: "facebook.com/groups/pantrypagenorman/", cats: ["food"], g: "Norman" },

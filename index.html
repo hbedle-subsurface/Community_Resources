@@ -53,6 +53,8 @@ a{color:var(--teal-dk)}
   color:var(--teal);margin:0;
 }
 
+.lang{align-self:flex-start;font-family:"DM Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;text-decoration:none;color:var(--teal-dk);border:2px solid var(--line);border-radius:999px;padding:.3rem .8rem}
+.lang:hover{border-color:var(--teal);background:var(--sky)}
 /* ---------- urgent strip ---------- */
 .urgent{background:var(--teal-dk);color:#fff}
 .urgent .wrap{padding:.7rem 0;display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;align-items:baseline;font-size:.95rem}
@@ -191,6 +193,7 @@ a{color:var(--teal-dk)}
   <div class="wrap">
     <a href="https://www.firstcongregationalchurchofnorman.org/"><img src="logo.jpeg" alt="First Congregational Church of Norman, UCC — an open and affirming congregation"></a>
     <p class="kicker">Community resource directory</p>
+    <a class="lang" id="langLink" href="es.html" lang="es" hreflang="es">Español</a>
   </div>
 </header>
 
@@ -269,7 +272,7 @@ a{color:var(--teal-dk)}
     <p>First Congregational Church of Norman is an Open and Affirming congregation &mdash; everyone is welcome here, exactly as you are. Learn more at <a href="https://www.firstcongregationalchurchofnorman.org/" target="_blank" rel="noopener">firstcongregationalchurchofnorman.org</a>.</p>
 
     <p class="fine">
-      Resource list compiled by McFarlin Memorial United Methodist Church, updated 9/2/2026, and shared here with thanks. The master version is posted at <a href="https://mcfarlinumc.org/missions/if-you-need-help/" target="_blank" rel="noopener">mcfarlinumc.org</a>. Unless another area code is shown, all numbers are 405.
+      Resource list compiled by McFarlin Memorial United Methodist Church, updated 10/23/2026, and shared here with thanks. The master version is posted at <a href="https://mcfarlinumc.org/missions/if-you-need-help/" target="_blank" rel="noopener">mcfarlinumc.org</a>. Unless another area code is shown, all numbers are 405.
       For pantries outside Norman, call 211 or visit <a href="https://www.211oklahomahelpline.org/" target="_blank" rel="noopener">211oklahomahelpline.org</a>. For 24/7 outdoor pantries, see <a href="https://www.facebook.com/groups/pantrypagenorman/" target="_blank" rel="noopener">The Pantry Page</a> on Facebook, or <a href="https://www.findhelp.org" target="_blank" rel="noopener">findhelp.org</a>.
     </p>
   </div>
@@ -617,9 +620,17 @@ a{color:var(--teal-dk)}
     }, {rootMargin:"-60px 0px 0px 0px"}).observe(sentinel);
   }
 
+  /* ---- language link keeps the chosen category ---- */
+  var langLink = document.getElementById("langLink");
+  function syncLang(){ langLink.href = "es.html" + location.hash; }
+  window.addEventListener("hashchange", syncLang);
+  var _rs = history.replaceState;
+  history.replaceState = function(){ _rs.apply(history, arguments); syncLang(); };
+
   /* ---- open on a category if the link had one ---- */
   var start = location.hash.replace("#","");
   select(CATEGORIES.some(function(c){ return c.id === start; }) ? start : null, false);
+  syncLang();
 })();
 </script>
 </body>
