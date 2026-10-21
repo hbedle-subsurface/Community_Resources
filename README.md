@@ -16,6 +16,7 @@ Open it here - https://hbedle-subsurface.github.io/Community_Resources/
 | `resources.es.js` | The 194 listings in Spanish, in the same order as `resources.js` |
 | `logo.jpeg` | Church logo shown in the header |
 | `resource-list.pdf` | The full 6-page flyer, linked from the footer |
+| `resource-list-es.pdf` | Spanish translation of the flyer (7 pages), linked from `es.html` |
 
 
 ## Keeping the Spanish page in step
@@ -24,7 +25,8 @@ The two pages are separate, linked by an English / Español button at the top of
 When a listing changes in `resources.js`, make the same change in `resources.es.js`
 (same position in the list). Phone numbers, websites and emails are copied as they are;
 only the names of generic services and the descriptions are translated. The Spanish
-page links to the same English PDF.
+page links to `resource-list-es.pdf`, a Spanish translation of the flyer. When the flyer is
+replaced, the Spanish PDF needs to be redone from the new English one.
 
 Spanish page: https://hbedle-subsurface.github.io/Community_Resources/es.html
 
